@@ -1,1 +1,19 @@
+services:
+  rabbitmq:
+    build:
+      context: /rabbit_mq
+      dockerfile: Dockerfile
+    restart: always
+    hostname: rabbitmq
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "5600:5600"
+      - "15600:15600"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
 
+volumes:
+  rabbitmq-data:
