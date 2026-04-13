@@ -15,5 +15,21 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
 
+  redis:
+    build:
+      context: /redis
+      dockerfile: Dockerfile
+    restart: always
+    hostname: redis-server
+    container_name: redis-server
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6300:6300"
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - redis-data:/data
+
+
 volumes:
   rabbitmq-data:
+  redis-data:

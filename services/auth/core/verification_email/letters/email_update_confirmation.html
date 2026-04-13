@@ -1,0 +1,103 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .container {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 30px;
+                background-color: #ffffff;
+            }
+            h2 {
+                color: #2c3e50;
+                margin-bottom: 20px;
+            }
+            .email-change-box {
+                background-color: #f8f9fa;
+                border-left: 4px solid #007bff;
+                padding: 15px;
+                margin: 20px 0;
+            }
+            .button {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #007bff;
+                color: #ffffff !important;
+                text-decoration: none;
+                border-radius: 4px;
+                margin: 20px 0;
+                font-weight: bold;
+            }
+            .button:hover {
+                background-color: #0056b3;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .warning {
+                color: #dc3545;
+                font-size: 14px;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #f8d7da;
+                border-radius: 4px;
+            }
+            .footer {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #e0e0e0;
+                font-size: 12px;
+                color: #6c757d;
+            }
+            .expiry-note {
+                color: #6c757d;
+                font-style: italic;
+                margin-top: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>{{app_name}}</h2>
+            </div>
+
+            <h2>Запрос на смену email</h2>
+
+            {{#username}}
+            <p>Здравствуйте, <strong>{{username}}</strong>!</p>
+            {{/username}}
+
+            <div class="email-change-box">
+                <p>Вы запросили смену email с <strong>{{old_email}}</strong> на <strong>{{new_email}}</strong></p>
+            </div>
+
+            <p>Для подтверждения перейдите по ссылке:</p>
+
+            <a href="{{confirmation_link}}" class="button">Подтвердить смену email</a>
+
+            <div class="warning">
+                <strong>⚠️ Внимание!</strong> Если вы не запрашивали смену email, проигнорируйте это письмо.
+                Возможно, кто-то пытается получить доступ к вашему аккаунту.
+            </div>
+
+            <p class="expiry-note">⏰ Ссылка действительна {{expires_in_minutes}} минут.</p>
+
+<!--            <div class="footer">-->
+<!--                <p>С уважением,<br>Команда {{app_name}}</p>-->
+<!--                <p>{{support_email}}</p>-->
+<!--            </div>-->
+        </div>
+    </body>
+    </html>

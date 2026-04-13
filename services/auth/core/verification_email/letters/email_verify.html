@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .container {
+                background-color: #f9f9f9;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .code-container {
+                background-color: #fff;
+                border: 2px dashed #4CAF50;
+                border-radius: 8px;
+                padding: 20px;
+                text-align: center;
+                margin: 20px 0;
+            }
+            .verification-code {
+                font-size: 32px;
+                font-weight: bold;
+                letter-spacing: 5px;
+                color: #4CAF50;
+                margin: 10px 0;
+            }
+            .footer {
+                margin-top: 30px;
+                font-size: 12px;
+                color: #666;
+                text-align: center;
+            }
+            .warning {
+                color: #f44336;
+                font-size: 14px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>{{app_name}}</h2>
+            </div>
+
+            <p>Вы запросили код подтверждения для вашей учетной записи.</p>
+
+            <div class="code-container">
+                <p style="margin: 0; color: #666;">Ваш код подтверждения:</p>
+                <div class="verification-code">{{code}}</div>
+                <p style="margin: 10px 0 0; font-size: 14px; color: #666;">
+                    Код действителен в течение {{expires_in_minutes}} минут
+                </p>
+            </div>
+
+            <p>Если вы не запрашивали этот код, просто проигнорируйте это письмо.</p>
+
+            <div class="warning">
+                ⚠️ Никому не сообщайте этот код!
+            </div>
+
+<!--            <div class="footer">-->
+<!--                <p>© {{year}} {{app_name}}. Все права защищены.</p>-->
+<!--                <p>{{company_address}}</p>-->
+<!--            </div>-->
+        </div>
+    </body>
+    </html>

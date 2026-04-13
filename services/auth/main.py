@@ -1,29 +1,42 @@
 from contextlib import asynccontextmanager
+
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import RegisterTortoise
+from shared_http import register_app
 
-from api.v1.views import router as main_router
+from api import router_api
 from core.config import SETTINGS
+from infrastructure.broker import broker
+from infrastructure.storage import get_basic_redis_client
 
 
 @asynccontextmanager
 async def lifespan(api_app: FastAPI):
-    async with RegisterTortoise(
+    db = RegisterTortoise(
         app=api_app,
         config_file=SETTINGS.database.path_to_config,
         use_tz=True,
         timezone=SETTINGS.database.timezone,
         generate_schemas=True
-    ):
-        yield
+    )
+
+    await db.init_orm()
+    await broker.start()
+    await get_basic_redis_client().connect()
+
+    yield
+
+    await db.close_orm()
+    await broker.stop()
+    await get_basic_redis_client().disconnect()
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(main_router)
+app.include_router(router_api)
 
-
+register_app(app)
 
 
 origins = [
