@@ -1,0 +1,18 @@
+[project]
+name = "session-manager"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Tim",email = "timofei2500@bk.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "tortoise-orm (>=1.1.7,<2.0.0)",
+    "fastapi[all] (>=0.135.3,<0.136.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

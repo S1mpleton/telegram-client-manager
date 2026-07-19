@@ -1,0 +1,16 @@
+{
+    "connections": {
+        "sqlite": {
+            "engine": "tortoise.backends.sqlite",
+            "credentials": {
+                "file_path": "database.db"
+            }
+        }
+    },
+    "apps": {
+        "models": {
+            "models": ["infrastructure.database.models"],
+            "default_connection": "sqlite"
+        }
+    }
+}
